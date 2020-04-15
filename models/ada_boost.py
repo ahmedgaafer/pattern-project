@@ -11,7 +11,7 @@ def ada_boost(x, y, mod="dt"):
     elif mod == 'rf':
         clf = RandomForestClassifier(random_state=randomstate, max_depth=3)
     elif mod == 'svm':
-        clf = SVC(random_state=43)
+        clf = SVC(random_state=randomstate)
     else:
         clf = DecisionTreeClassifier(random_state=randomstate, max_depth=3)
 
