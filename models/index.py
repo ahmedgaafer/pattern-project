@@ -2,10 +2,11 @@ from models.logisticReg import log_reg
 from models.svm import svm
 from models.random_forest import random_forest
 from models.ada_boost import ada_boost
-
+from models.naiive import naiive
 def model(x, y, mod="adaboost-forest"):
-
-    if mod == "svm":
+    if mod == 'ada-naiive':
+        return naiive(x,y)
+    elif mod == "svm":
         return svm(x, y)
     elif mod == "log-reg":
         return log_reg(x, y)

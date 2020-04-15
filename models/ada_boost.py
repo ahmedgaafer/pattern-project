@@ -8,9 +8,9 @@ from sklearn.linear_model import LogisticRegression
 
 def ada_boost(x, y, mod="dt"):
     if mod == 'dt':
-        clf = DecisionTreeClassifier(random_state=randomstate, max_depth=3)
+        clf = DecisionTreeClassifier(random_state=randomstate, max_depth=m_depth)
     elif mod == 'rf':
-        clf = RandomForestClassifier(random_state=randomstate, max_depth=3)
+        clf = RandomForestClassifier(random_state=randomstate, max_depth=m_depth)
     elif mod == 'svm':
         clf = SVC(random_state=randomstate)
     elif mod == 'log':

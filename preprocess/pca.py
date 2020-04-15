@@ -4,7 +4,7 @@ from configs import *
 
 
 def pca(arr):
-    reducer = 3
+    reducer = reducerPCA
     arr = np.array(arr)
     p = PCA(n_components=reducer, random_state=randomstate)
     p.fit(arr)
