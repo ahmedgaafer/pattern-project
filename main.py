@@ -76,8 +76,8 @@ delim()
 
 p("EXPORTING RESULTS TO CSV ...")
 #region export
-f  = {'id': [i for i in range(243, 304)],
+f = {'Index': [i for i in range(243, 304)],
       "target": pr}
 df = pd.DataFrame(f)
-df.to_csv('ans.csv')
+df.to_csv('ans.csv', index=False)
 #endregion
