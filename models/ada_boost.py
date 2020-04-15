@@ -3,6 +3,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from configs import *
+from sklearn.linear_model import LogisticRegression
 
 
 def ada_boost(x, y, mod="dt"):
@@ -12,6 +13,8 @@ def ada_boost(x, y, mod="dt"):
         clf = RandomForestClassifier(random_state=randomstate, max_depth=3)
     elif mod == 'svm':
         clf = SVC(random_state=randomstate)
+    elif mod == 'log':
+        clf = LogisticRegression(random_state=randomstate)
     else:
         clf = DecisionTreeClassifier(random_state=randomstate, max_depth=3)
 

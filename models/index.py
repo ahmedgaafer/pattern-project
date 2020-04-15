@@ -17,5 +17,7 @@ def model(x, y, mod="adaboost-forest"):
         return ada_boost(x, y, 'rf')
     elif mod == 'ada-svm':
         return ada_boost(x, y, 'svm')
+    elif mod == 'ada-log':
+        return ada_boost(x,y,'log')
     else:
         print("DEFAULT")
