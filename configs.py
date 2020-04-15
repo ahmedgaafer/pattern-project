@@ -1,3 +1,3 @@
-randomstate = 1
+randomstate = 90
 m_depth = 13
-reducerPCA = 3
+reducerPCA = 6

@@ -20,7 +20,7 @@ def ada_boost(x, y, mod="dt"):
 
     estimator = 200
     btd = AdaBoostClassifier(clf,
-                             algorithm="SAMME",
+                             algorithm="SAMME.R",
                              n_estimators=estimator, random_state=randomstate
                              )
     btd.fit(x, y)
