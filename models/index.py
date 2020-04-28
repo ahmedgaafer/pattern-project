@@ -3,11 +3,15 @@ from models.svm import svm
 from models.random_forest import random_forest
 from models.ada_boost import ada_boost
 from models.naiive import naiive
+from .knn import knn
+from sklearn.neighbors import KNeighborsClassifier
 def model(x, y, mod="adaboost-forest"):
     if mod == 'ada-naiive':
         return naiive(x,y)
     elif mod == "svm":
         return svm(x, y)
+    elif mod == 'knn':
+        return knn(x,y)
     elif mod == "log-reg":
         return log_reg(x, y)
     elif mod == "random_forest":

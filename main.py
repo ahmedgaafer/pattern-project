@@ -51,7 +51,7 @@ delim()
 
 p("MODEL TRAINING...")
 #region models
-mod = 'ada-log'
+mod = 'ada-dt'
 clf = model(x_train, y_train, mod)
 
 #endregion

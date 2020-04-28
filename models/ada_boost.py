@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from configs import *
 from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
 
 
 def ada_boost(x, y, mod="dt"):
@@ -15,6 +16,8 @@ def ada_boost(x, y, mod="dt"):
         clf = SVC(random_state=randomstate)
     elif mod == 'log':
         clf = LogisticRegression(random_state=randomstate)
+    elif mod == 'knn':
+        clf = KNeighborsClassifier(n_neighbors=3)
     else:
         clf = DecisionTreeClassifier(random_state=randomstate, max_depth=3)
 
