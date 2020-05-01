@@ -1,13 +1,16 @@
 from preprocess.removeOutliers import remove_outliers
 from preprocess.scale import scale
 from preprocess.pca import pca
+import numpy as np
 
 
-def pre_process(arr, y=[], t="train"):
-    if t == "train":
-        arr, y = remove_outliers(arr, y, t=t)
-    arr = pca(arr)
-    arr = scale(arr)
 
-    return arr, y
+def pre_process(arr, test, y=[]):
+    test = test.to_numpy()
+    arr  = arr.to_numpy()
+    arr, y = remove_outliers(arr, y)
+    arr, test = pca(arr, test)
+    arr, test = scale(arr, test)
+
+    return arr, test, y
 

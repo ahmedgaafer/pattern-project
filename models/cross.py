@@ -1,17 +1,15 @@
-from sklearn.ensemble import AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from configs import *
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import KFold
 import numpy as np
-from sklearn.neighbors import KNeighborsClassifier
 
 
-
-def ada_boost(x, y, mod="dt"):
+def cross(x, y, mod="dt"):
     if mod == 'dt':
         clf = DecisionTreeClassifier(random_state=randomstate, max_depth=m_depth)
     elif mod == 'rf':
@@ -20,22 +18,25 @@ def ada_boost(x, y, mod="dt"):
         clf = SVC(random_state=randomstate)
     elif mod == 'log':
         clf = LogisticRegression(random_state=randomstate)
-    elif mod == 'knn':
-        clf = KNeighborsClassifier(n_neighbors=3)
     else:
-        clf = DecisionTreeClassifier(random_state=randomstate, max_depth=3)
+        clf = DecisionTreeClassifier(random_state=randomstate, max_depth=m_depth)
 
-    estimator = 200
-    btd = AdaBoostClassifier(clf,
-                             algorithm="SAMME",
-                             n_estimators=estimator, random_state=randomstate
-                             )
+    kf = KFold(n_splits=5)
+
     m = -100
     crf = None
-    kf = KFold(n_splits=folds)
-    fbtd = btd.fit(x, y)
 
-    return fbtd
+    for train, test in kf.split(x):
 
+        X_train, X_test, y_train, y_test = np.array(x)[train], np.array(x)[test], np.array(y)[train], np.array(y)[test]
+        clf.fit(X_train, y_train)
+        pr = clf.predict(X_test)
 
+        acc = accuracy_score(y_test, pr)
 
+        if acc > m:
+            m = acc
+            crf = clf
+            print(f"=>>>>>>>>>>> {acc}")
+
+    return crf

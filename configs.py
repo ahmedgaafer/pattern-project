@@ -1,3 +1,5 @@
-randomstate = 90
-m_depth = 5
-reducerPCA = 5
+randomstate = 1
+m_depth = 13
+reducerPCA = 3
+folds = 5
+
