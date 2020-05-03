@@ -9,7 +9,7 @@ def pre_process(arr, test, y=[]):
     test = test.to_numpy()
     arr  = arr.to_numpy()
     arr, y = remove_outliers(arr, y)
-    arr, test = pca(arr, test)
+    #arr, test = pca(arr, test)
     arr, test = scale(arr, test)
 
     return arr, test, y

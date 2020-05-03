@@ -3,7 +3,9 @@ import pandas as pd
 from utils import *
 from models.index import model
 from preprocess.index import pre_process
-import matplotlib.pyplot as plt
+import joblib
+
+
 # endregion
 
 p("READING THE DATA... ")
@@ -50,17 +52,32 @@ delim()
 
 p("MODEL TRAINING...")
 # region models
-mod = 'log-reg'
+mod = 'svm'
 clf = model(x_train, y_train, mod)
 
 # endregion
 delim()
 
-p("EXPORTING RESULTS TO CSV ...")
+p("Saving model...")
 # region export
 
-pr = clf.predict(y_test)
+filename = f'{mod}_model.pkl'
+joblib.dump(clf, './'+filename)
+# endregion
+
+delim()
+p('Loading model')
+
+# region loading model
+loaded_model = joblib.load('./'+filename)
+# endregion
+
+delim()
+p('Predicting and saving results to CSV...')
+# region prediction
+pr = loaded_model.predict(test)
 f = {'Index': [i for i in range(243, 304)], "target": pr}
 df = pd.DataFrame(f)
 df.to_csv('ans.csv', index=False)
 # endregion
+
